@@ -1,0 +1,21 @@
+version: '3'
+services:
+  debian-container:
+    build:
+      dockerfile: debian/dockerfile
+    volumes:
+      - ./IA_WebCreator:/srv/IA_WebCreator
+    networks:
+      - my-network
+
+  apache-container:
+    image: httpd:2.4
+    ports:
+      - "8080:80"
+    volumes:
+      - ./http:/usr/local/apache2/htdocs
+    networks:
+      - my-network
+
+networks:
+  my-network:
