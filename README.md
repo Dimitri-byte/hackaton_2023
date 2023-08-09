@@ -41,3 +41,12 @@ IA_WebCreator\models\llama-30b-instruct-2048
 
 ## Llama-2-70b-instruct-v2
 https://huggingface.co/upstage/Llama-2-70b-instruct-v2
+
+# Config wsl pour windows
+Créer un fichier .wslconfig dans le répertoire %UserProfile%
+## .wslconfig
+[wsl2]
+
+memory=16GB 
+
+processors=8 
