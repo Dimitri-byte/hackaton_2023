@@ -11,7 +11,7 @@ services:
   apache-container:
     image: httpd:2.4
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./http:/usr/local/apache2/htdocs
     networks:
