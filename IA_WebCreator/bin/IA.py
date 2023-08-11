@@ -1,7 +1,7 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
 
-tokenizer = AutoTokenizer.from_pretrained("upstage/llama-30b-instruct")
+tokenizer = AutoTokenizer.from_pretrained("PygmalionAI/pygmalion-6b")
 # model = AutoModelForCausalLM.from_pretrained(
 #     "upstage/llama-30b-instruct",
 #     offload_folder="/srv/IA_WebCreator/tmp",
@@ -12,16 +12,16 @@ tokenizer = AutoTokenizer.from_pretrained("upstage/llama-30b-instruct")
 # )
 
 model = AutoModelForCausalLM.from_pretrained(
-    "/srv/IA_WebCreator/models/llama-30b-instruct-2048",
-    offload_folder="/srv/IA_WebCreator/tmp",
+    "/home/vagrant/IA_WebCreator/models/pygmalion-6b",
+    offload_folder="/home/vagrant/IA_WebCreator/tmp",
     device_map="auto",
-    torch_dtype=torch.float16,
-    rope_scaling={"type": "dynamic", "factor": 2}
+    torch_dtype=torch.float32,
+    # rope_scaling={"type": "dynamic", "factor": 2}
 )
 
 prompt = "### User:\nThomas is healthy, but he has to go to the hospital. What could be the reasons?\n\n### Assistant:\n"
 inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-del inputs["token_type_ids"]
+# del inputs["token_type_ids"]
 streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
 
 output = model.generate(**inputs, streamer=streamer, use_cache=True, max_new_tokens=float('inf'))

@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "maxhamon/debian12"
+
+  config.vm.synced_folder "../IA_WebCreator", "/home/vagrant/IA_WebCreator"
+
+  config.disksize.size = '80GB'
+
+  config.vm.provider "virtualbox" do |vb|
+
+    vb.memory = "8192"
+
+  end
+
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update && apt-get install \
+    -y --no-install-recommends python3 python3-virtualenv
+
+    apt-get install tmux -y
+    apt-get install htop -y
+
+    VIRTUAL_ENV=/opt/venv
+    python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+
+    echo 'source /opt/venv/bin/activate' >> /home/vagrant/.bashrc
+
+    source /opt/venv/bin/activate
+
+    pip install torch
+    pip install transformers
+    pip install accelerate
+    pip install bitsandbytes
+    pip install scipy
+    pip install safetensors
+
+    # Créer un fichier de swap
+    # fallocate -l 5G /swapfile
+    # chmod 600 /swapfile
+    # mkswap /swapfile
+    # swapon /swapfile
+
+    # Ajouter l'entrée au fstab pour activer le swap au démarrage
+    # echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+
+    # Configuration de la locale en français
+    # echo 'export LC_ALL=fr_FR.UTF-8' >> ~/.bashrc
+    # echo 'export LANG=fr_FR.UTF-8' >> ~/.bashrc
+
+  SHELL
+end
