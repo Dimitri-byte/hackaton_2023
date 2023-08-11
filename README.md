@@ -6,7 +6,7 @@
 - Installer Vagrant : https://www.vagrantup.com
 
 ### Installer les plugins suivant
-Dans un terminal (même sous windows) lancer la commande suivante : 
+Dans un terminal (même sous windows) lancer les commandes suivante : 
 
 vagrant plugin install vagrant-vbguest
 
