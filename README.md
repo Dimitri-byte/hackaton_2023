@@ -39,18 +39,3 @@ https://huggingface.co/upstage/Llama-2-70b-instruct-v2
 
 https://huggingface.co/PygmalionAI/pygmalion-6b
 
-## TMP faire la swap
-sudo fdisk /dev/sda
-
-sudo mkswap /dev/sda3
-
-sudo nano /etc/fstab
-
-""""
-/dev/sda3   none   swap   sw   0   0
-""""
-
-
-sudo swapon -a
-
-free -h
