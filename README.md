@@ -26,16 +26,12 @@ vagrant destroy
 ## Se connecter au Vagrant
 vagrant ssh
 
-# Models
-## Télécharger les modèles de langages dans le répertoire 
-IA_WebCreator\models
-### Exemple
-IA_WebCreator\models\llama-30b-instruct-2048
+# API ChatGPT
+## Créer une API key
+Personal -> View API keys -> Create new secret key
+### Fichier clé
+Inscrire la clé dans le fichier IA_WebCreator/bin/api_key.txt
+## Sources
+https://platform.openai.com/overview
 
-## Llama-2-70b-instruct-v2
-https://huggingface.co/upstage/Llama-2-70b-instruct-v2
-
-## pygmalion-6b  (petit modèle)
-
-https://huggingface.co/PygmalionAI/pygmalion-6b
 

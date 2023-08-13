@@ -12,11 +12,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "../IA_WebCreator", "/home/vagrant/IA_WebCreator"
 
-  config.disksize.size = '80GB'
+  config.disksize.size = '30GB'
 
   config.vm.provider "virtualbox" do |vb|
 
-    vb.memory = "8192"
+    vb.memory = "2048"
 
   end
 
@@ -34,17 +34,9 @@ Vagrant.configure("2") do |config|
 
     source /opt/venv/bin/activate
 
-    pip install torch
-    pip install transformers
-    pip install accelerate
-    pip install bitsandbytes
-    pip install scipy
-    pip install safetensors
 
-    echo -e "n\np\n3\n\n\nw" | sudo fdisk /dev/sda
-    sudo mkswap /dev/sda3
-    echo "/dev/sda3   none   swap   sw   0   0" >> /etc/fstab
-    sudo swapon -a
+    pip install openai
+
 
   SHELL
 end
