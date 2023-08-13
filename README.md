@@ -23,6 +23,9 @@ Fermer la VM sur Oracle Virtualbox
 
 vagrant destroy
 
+## tester la connexion web
+http://127.0.0.1:8081
+
 ## Se connecter au Vagrant
 vagrant ssh
 

@@ -11,8 +11,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "maxhamon/debian12"
 
   config.vm.synced_folder "../IA_WebCreator", "/home/vagrant/IA_WebCreator"
+  config.vm.synced_folder "../html", "/var/www/html"
 
-  config.disksize.size = '30GB'
+  config.vm.network "forwarded_port", guest: 80, host: 8081
+
+  config.disksize.size = '32GB'
 
   config.vm.provider "virtualbox" do |vb|
 
@@ -26,6 +29,7 @@ Vagrant.configure("2") do |config|
 
     apt-get install tmux -y
     apt-get install htop -y
+    apt-get install apache2 -y
 
     VIRTUAL_ENV=/opt/venv
     python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
