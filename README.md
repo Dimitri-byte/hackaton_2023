@@ -1,33 +1,40 @@
 # hackaton_2023
-
 ## Prérequis
-- Installer Oracle Virtual Box : https://www.virtualbox.org/wiki/Downloads
-
-- Installer Vagrant : https://www.vagrantup.com
-
-### Installer les plugins suivant
-Dans un terminal (même sous windows) lancer les commandes suivante : 
-
-vagrant plugin install vagrant-vbguest
-
-vagrant plugin install vagrant-disksize
-
-## Lancement du vagrant
-Se mettre dans le même répertoire que le fichier "Vagrantfile".
+- Docker
+- Docker-compose
+## Lancement du docker
+Se mettre dans le même répertoire que le fichier "docker-compose.yml".
 Lancer la commande suivante : 
+docker-compose up
 
-vagrant up
+## Stoper le docker
+docker-compose stop
 
-## Supprimer la vagrant
-Fermer la VM sur Oracle Virtualbox
+## Lister les docker
+docker ps
 
-vagrant destroy
+## Se connecter au docker
+### Apache
+docker exec -it hackaton_2023-apache-container-1 bash
+### Debian
+docker exec -it hackaton_2023-debian-container-1 bash
+
+## Supprimer le docker et vider le cache
+Se mettre dans le même répertoire que le fichier "docker-compose.yml".
+
+Lancer les commandes suivante dans l'ordre:
+docker-compose down
+
+docker rmi --force httpd:2.4
+
+docker rmi --force hackaton_2023-debian-container
+
+docker volume prune
+
+docker builder prune
 
 ## tester la connexion web
 http://127.0.0.1:8081
-
-## Se connecter au Vagrant
-vagrant ssh
 
 # API ChatGPT
 ## Créer une API key
@@ -36,5 +43,4 @@ Personal -> View API keys -> Create new secret key
 Inscrire la clé dans le fichier IA_WebCreator/bin/api_key.txt
 ## Sources
 https://platform.openai.com/overview
-
 

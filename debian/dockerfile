@@ -1,0 +1,19 @@
+# Utilisez l'image de base Debian
+FROM debian:12
+
+# Définissez un répertoire de travail
+WORKDIR /srv/IA_WebCreator
+
+# Mettez à jour les paquets et installaton des divers programmes
+RUN apt-get update && apt-get install \
+  -y --no-install-recommends python3 python3-virtualenv
+
+ENV VIRTUAL_ENV=/opt/venv
+
+RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN pip install openai
+
+# Démarrez votre application, si nécessaire
+CMD ["tail", "-f", "/dev/null"]
