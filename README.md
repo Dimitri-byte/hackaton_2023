@@ -23,14 +23,11 @@ docker exec -it hackaton_2023-debian-container-1 bash
 Se mettre dans le même répertoire que le fichier "docker-compose.yml".
 
 Lancer les commandes suivante dans l'ordre:
-docker-compose down
-
-docker rmi --force httpd:2.4
-
-docker rmi --force hackaton_2023-debian-container
-
-docker volume prune
-
+docker-compose down 
+docker rmi --force httpd:2.4 
+docker rmi --force hackaton_2023-debian-container 
+docker rmi --force hackaton_2023-angular
+docker volume prune 
 docker builder prune
 
 ## tester la connexion web
@@ -44,3 +41,6 @@ Inscrire la clé dans le fichier IA_WebCreator/bin/api_key.txt
 ## Sources
 https://platform.openai.com/overview
 
+# Angular
+## Connexion à angular
+http://127.0.0.1:4200

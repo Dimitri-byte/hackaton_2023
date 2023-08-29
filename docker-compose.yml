@@ -9,11 +9,24 @@ services:
       - my-network
 
   apache-container:
+    build: 
+      dockerfile: apache/dockerfile
     image: httpd:2.4
     ports:
       - "8081:80"
     volumes:
       - ./http:/usr/local/apache2/htdocs
+    networks:
+      - my-network
+  angular:
+    build:
+      context: angular
+      target: builder
+    ports:
+      - 4200:4200
+    volumes:
+      - ./angular:/project
+      - /project/node_modules
     networks:
       - my-network
 
