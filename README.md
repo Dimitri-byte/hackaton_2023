@@ -44,3 +44,10 @@ https://platform.openai.com/overview
 # Angular
 ## Connexion à angular
 http://127.0.0.1:4200
+
+# SeverWeb python
+## Lancer le serveur web python
+python IA.py
+
+## Exemple de requête
+curl -X POST -H "Content-Type: application/json" -d '{"prompt": "say hello"}' http://localhost:5000/generate-text

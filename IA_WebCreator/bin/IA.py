@@ -1,13 +1,14 @@
 import os
 import openai
 import requests
+from flask import Flask, request, jsonify
 
 with open("api_key.txt", "r") as file:
     open_api_key = file.read().strip()
-contextPrompt = "As a professional front end developper, create an html and css skeleton with bootstrap responsice design for the following scenario."
-formattingPrompt = "Return the answer as a JSON Object with the following format."
-jsonFormatString = "{\"htmlCode\": \"html\", \"CSSCode\": \"css\"}"
-cleaningUpJsonPrompt = "Remove all occurences of \n \\n \\ and \\\ in your response."
+contextPrompt = "As a professional front end developer, create an HTML and CSS skeleton with responsive design using Bootstrap for the following scenario."
+formattingPrompt = "Return the answer as a JSON object with the following format."
+jsonFormatString = "{\"htmlCode\": \"html\", \"cssCode\": \"css\"}"
+cleaningUpJsonPrompt = "Remove all occurrences of \\n \\ and \\\ in your response."
 
 def generate_text(prompt):
     api_key = open_api_key
@@ -17,11 +18,12 @@ def generate_text(prompt):
     payload = {
         "model": model,
         "messages": [
-            {"role": "user", "content": contextPrompt}, # Eg. As a developper building a website, I would like...
+            {"role": "system", "content": contextPrompt},
             {"role": "user", "content": prompt},
             {"role": "user", "content": formattingPrompt + jsonFormatString},
-            {"role": "user", "content": cleaningUpJsonPrompt}],
-        "max_tokens": 100, # The maximum number of tokens to generate in the chat completion.
+            {"role": "user", "content": cleaningUpJsonPrompt}
+        ],
+        "max_tokens": 100,
         "n": 1,
         "stop": None,
         "temperature": 0.5,
@@ -33,16 +35,29 @@ def generate_text(prompt):
         "Authorization": f"Bearer {api_key}"
     }
 
-    response = requests.post(endpoint, headers=headers, json=payload, stream=False)
+    response = requests.post(endpoint, headers=headers, json=payload)
     if response.status_code == 200:
         completions = response.json()["choices"][0]["message"]["content"]
         print("AI's response:", completions)
-        print("AI's response in json:", response.text)
-        return response
+        print("AI's response in JSON:", response.text)
+        return completions
     else:
         print("Request failed with status code:", response.status_code)
         print("Response:", response.text)
         return None
 
-generated_text = generate_text("Show me an image element with a mountain for the bootstrap page.")
-print(generated_text)
+app = Flask(__name__)
+
+@app.route('/generate-text', methods=['POST'])
+def generate_text_api():
+    prompt = request.json.get('prompt')
+    generated_text = generate_text(prompt)
+
+    response = {
+        'generated_text': generated_text
+    }
+
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run()
