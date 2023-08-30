@@ -1,21 +1,48 @@
 import os
 import openai
+import requests
 
-# Lire la clé API depuis le fichier
 with open("api_key.txt", "r") as file:
-    api_key = file.read().strip()
+    open_api_key = file.read().strip()
+contextPrompt = "As a professional front end developper, create an html and css skeleton with bootstrap responsice design for the following scenario."
+formattingPrompt = "Return the answer as a JSON Object with the following format."
+jsonFormatString = "{\"htmlCode\": \"html\", \"CSSCode\": \"css\"}"
+cleaningUpJsonPrompt = "Remove all occurences of \n \\n \\ and \\\ in your response."
 
-openai.api_key = api_key
+def generate_text(prompt):
+    api_key = open_api_key
+    model = "gpt-3.5-turbo"
+    endpoint = "https://api.openai.com/v1/chat/completions"
 
-# Créer la conversation avec le modèle
-chat_completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Bonjour, dit moi en anglais bonjour je suis chatgpt"}
-    ]
-)
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "user", "content": contextPrompt}, # Eg. As a developper building a website, I would like...
+            {"role": "user", "content": prompt},
+            {"role": "user", "content": formattingPrompt + jsonFormatString},
+            {"role": "user", "content": cleaningUpJsonPrompt}],
+        "max_tokens": 100, # The maximum number of tokens to generate in the chat completion.
+        "n": 1,
+        "stop": None,
+        "temperature": 0.5,
+        "stream": False,
+    }
 
-# Afficher la réponse générée par le modèle
-response = chat_completion.choices[0].message["content"]
-print("Réponse :", response)
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    response = requests.post(endpoint, headers=headers, json=payload, stream=False)
+    if response.status_code == 200:
+        completions = response.json()["choices"][0]["message"]["content"]
+        print("AI's response:", completions)
+        print("AI's response in json:", response.text)
+        return response
+    else:
+        print("Request failed with status code:", response.status_code)
+        print("Response:", response.text)
+        return None
+
+generated_text = generate_text("Show me an image element with a mountain for the bootstrap page.")
+print(generated_text)
