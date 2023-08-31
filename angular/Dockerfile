@@ -5,6 +5,9 @@ FROM --platform=$BUILDPLATFORM node:17.0.1-bullseye-slim as builder
 RUN mkdir /project
 WORKDIR /project
 
+RUN apt-get update && apt-get install -y &&\
+    apt install -y curl
+
 RUN npm install -g @angular/cli@13
 
 COPY package.json package-lock.json ./

@@ -18,6 +18,8 @@ docker ps
 docker exec -it hackaton_2023-apache-container-1 bash
 ### Debian
 docker exec -it hackaton_2023-debian-container-1 bash
+### Angular
+docker exec -it hackaton_2023-angular-1 bash
 
 ## Supprimer le docker et vider le cache
 Se mettre dans le même répertoire que le fichier "docker-compose.yml".
@@ -50,4 +52,4 @@ http://127.0.0.1:4200
 python IA.py
 
 ## Exemple de requête
-curl -X POST -H "Content-Type: application/json" -d '{"prompt": "say hello"}' http://localhost:5000/generate-text
+curl -X POST -H "Content-Type: application/json" -d '{"prompt": "say hello"}' http://debian-container:5000/generate-text
