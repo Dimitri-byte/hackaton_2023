@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y &&\
     apt install -y curl
 
 RUN npm install -g @angular/cli@13
+RUN npm install @stackblitz/sdk
+RUN ng add @angular/material
 
 COPY package.json package-lock.json ./
 RUN npm ci
