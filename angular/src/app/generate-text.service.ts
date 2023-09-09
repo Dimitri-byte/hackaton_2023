@@ -14,7 +14,8 @@ export class GenerateTextService {
 
   public generate(message: string): Observable<ResponseText> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const params = new HttpParams().set('prompt', message);
-    return this.http.post<ResponseText>(this.url, null, { headers, params });
+    const body = { prompt: message }; // Créez un objet avec la propriété "prompt" contenant le message
+
+    return this.http.post<ResponseText>(this.url, body, { headers }); // Envoyez le corps de requête correctement formaté
   }
 }
