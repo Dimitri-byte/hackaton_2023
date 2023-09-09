@@ -8,12 +8,12 @@ from flask_cors import CORS
 with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
     open_api_key = file.read().strip()
 contextPrompt = "As a professional front end developer, create an HTML and CSS skeleton with responsive design using Bootstrap for the following scenario."
-formattingPrompt = "Return the answer as a JSON object with the following format."
-jsonFormatString = "{\"htmlCode\": \"html\", \"cssCode\": \"css\"}"
+formattingPrompt = "Return the answer as a RFC8259 compliant JSON object with the following format."
+jsonFormatString = "{\"htmlCode\": \"html code\", \"cssCode\": \"css code\"}"
 
 def generate_text(prompt):
     api_key = open_api_key
-    model = "gpt-3.5-turbo"
+    model = "gpt-4"
     endpoint = "https://api.openai.com/v1/chat/completions"
 
     payload = {
@@ -54,10 +54,12 @@ def generate_text_api():
     prompt = request.json.get('prompt')
     generated_text = generate_text(prompt)
     #check data type with type() method
-    print(type(generated_text))
-
+    print(type(str(generated_text)))
+    generated_text_str = str(generated_text)
     #convert string to object
-    json_object = json.loads(generated_text)
+    #TODO: corriger erreur convert type NONE to json (problème d'encodage?)
+    #generated_text_str.decode("utf-8")
+    json_object = json.loads(generated_text_str)
     response = {
         'generatedResponseText': json_object
     }
