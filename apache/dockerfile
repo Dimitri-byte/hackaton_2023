@@ -1,6 +1,0 @@
-# Utilisez l'image de base httpd
-FROM httpd:2.4
-
-# Mettez à jour les paquets et installaton des divers programmes
-RUN apt-get update && apt-get install -y &&\
-    apt install -y curl
