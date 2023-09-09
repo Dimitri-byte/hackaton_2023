@@ -3,21 +3,13 @@ services:
   debian-container:
     build:
       dockerfile: debian/dockerfile
+    ports:
+      - 5000:5000   
     volumes:
       - ./IA_WebCreator:/srv/IA_WebCreator
     networks:
       - my-network
 
-  apache-container:
-    build: 
-      dockerfile: apache/dockerfile
-    image: httpd:2.4
-    ports:
-      - "8081:80"
-    volumes:
-      - ./http:/usr/local/apache2/htdocs
-    networks:
-      - my-network
   angular:
     build:
       context: angular
