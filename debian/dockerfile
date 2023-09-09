@@ -16,6 +16,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip install openai
 RUN pip install flask
+RUN pip install -U flask-cors
 
 # Démarrez votre application, si nécessaire
 #CMD ["tail", "-f", "/dev/null"]

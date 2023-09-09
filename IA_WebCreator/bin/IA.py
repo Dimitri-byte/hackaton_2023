@@ -2,6 +2,7 @@ import os
 import openai
 import requests
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
     open_api_key = file.read().strip()
@@ -47,6 +48,7 @@ def generate_text(prompt):
         return None
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/generate-text', methods=['POST'])
 def generate_text_api():
