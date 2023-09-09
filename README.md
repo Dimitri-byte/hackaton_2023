@@ -14,8 +14,6 @@ docker-compose stop
 docker ps
 
 ## Se connecter au docker
-### Apache
-docker exec -it hackaton_2023-apache-container-1 bash
 ### Debian
 docker exec -it hackaton_2023-debian-container-1 bash
 ### Angular
@@ -52,4 +50,7 @@ http://127.0.0.1:4200
 python IA.py
 
 ## Exemple de requête
+### Depuis un docker
 curl -X POST -H "Content-Type: application/json" -d '{"prompt": "say hello"}' http://debian-container:5000/generate-text
+### Depuis votre poste
+curl -X POST -H "Content-Type: application/json" -d '{"prompt": "say hello"}' http://localhost:5000/generate-text
