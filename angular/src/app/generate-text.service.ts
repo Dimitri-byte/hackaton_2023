@@ -8,7 +8,7 @@ import {ResponseText} from "./generate-text";
 })
 export class GenerateTextService {
 
-    private url = 'http://debian-container:5000/generate-text';
+    private url = 'http://localhost:5000/generate-text';
 
     constructor(private http: HttpClient) {}
 
