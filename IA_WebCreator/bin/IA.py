@@ -1,3 +1,4 @@
+import json
 import os
 import openai
 import requests
@@ -9,7 +10,6 @@ with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
 contextPrompt = "As a professional front end developer, create an HTML and CSS skeleton with responsive design using Bootstrap for the following scenario."
 formattingPrompt = "Return the answer as a JSON object with the following format."
 jsonFormatString = "{\"htmlCode\": \"html\", \"cssCode\": \"css\"}"
-cleaningUpJsonPrompt = "Remove all occurrences of \\n \\ and \\\ in your response."
 
 def generate_text(prompt):
     api_key = open_api_key
@@ -21,8 +21,7 @@ def generate_text(prompt):
         "messages": [
             {"role": "system", "content": contextPrompt},
             {"role": "user", "content": prompt},
-            {"role": "user", "content": formattingPrompt + jsonFormatString},
-            {"role": "user", "content": cleaningUpJsonPrompt}
+            {"role": "user", "content": formattingPrompt + jsonFormatString}
         ],
         "max_tokens": 100,
         "n": 1,
@@ -54,9 +53,13 @@ CORS(app)
 def generate_text_api():
     prompt = request.json.get('prompt')
     generated_text = generate_text(prompt)
+    #check data type with type() method
+    print(type(generated_text))
 
+    #convert string to object
+    json_object = json.loads(generated_text)
     response = {
-        'generated_text': generated_text
+        'generatedResponseText': json_object
     }
 
     return jsonify(response)

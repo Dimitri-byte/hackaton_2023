@@ -62,13 +62,16 @@ export class AppComponent implements OnInit {
     // ---------------------- Méthodes publiques ------------------------------
 
     public startStackblitz() {
+        debugger;
         this.generateTextService.generate(this.content).subscribe(result => {
-            this.demandeTitle = result?.title;
+            debugger;
+            this.demandeTitle = result?.generated_text.title;
             this.project = {
                 ...this.project, ...{
                     files: {
-                        'index.html': result?.htmlCode.replace('<head>', this.cssPrefix + result?.cssCode + this.cssSuffix),
-                        'style.css': result?.cssCode,
+                        'index.html': result?.
+                        generated_text.htmlCode?.replace('<head>', this.cssPrefix + result?.generated_text.cssCode + this.cssSuffix),
+                        'style.css': result?.generated_text.cssCode,
                     },
                 }
             }
