@@ -18,5 +18,6 @@ RUN pip install openai
 RUN pip install flask
 
 # Démarrez votre application, si nécessaire
-CMD ["tail", "-f", "/dev/null"]
-# CMD ["python", "/srv/IA_WebCreator/bin/IA.py"]
+#CMD ["tail", "-f", "/dev/null"]
+CMD ["python", "/srv/IA_WebCreator/bin/IA.py"]
+#CMD tail -f /dev/null && cd /srv/IA_WebCreator/bin/ python IA.py

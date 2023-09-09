@@ -3,7 +3,7 @@ import openai
 import requests
 from flask import Flask, request, jsonify
 
-with open("api_key.txt", "r") as file:
+with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
     open_api_key = file.read().strip()
 contextPrompt = "As a professional front end developer, create an HTML and CSS skeleton with responsive design using Bootstrap for the following scenario."
 formattingPrompt = "Return the answer as a JSON object with the following format."
