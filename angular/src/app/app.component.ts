@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import StackBlitzSDK, {Project} from '@stackblitz/sdk';
 import {GenerateTextService} from "./generate-text.service";
 
@@ -7,11 +7,11 @@ import {GenerateTextService} from "./generate-text.service";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
     title = 'hackathon-front';
 
-    demandeTitle: string = 'Titre de la demande';
+    public demandeTitle: string = 'Titre de la demande';
 
     public content: string = '';
     private cssPrefix = '<head>\n\n<style>\n';
@@ -41,9 +41,7 @@ export class AppComponent implements OnInit {
     ) {
     }
 
-    // ----------------------- OnInit ------------------------------------------
-
-    ngOnInit() {
+    ngAfterViewInit(): void {
         this.htmlFile = this.htmlFile.replace('<head>', this.cssPrefix + this.cssFile + this.cssSuffix);
         this.project = {
             ...this.project, ...{
@@ -57,6 +55,11 @@ export class AppComponent implements OnInit {
             openFile: 'style.css,index.html',
             terminalHeight: 10,
         });
+    }
+
+    // ----------------------- OnInit ------------------------------------------
+
+    ngOnInit() {
     }
 
     // ---------------------- Méthodes publiques ------------------------------

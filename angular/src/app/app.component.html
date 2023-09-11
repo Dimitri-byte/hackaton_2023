@@ -1,55 +1,80 @@
 <!--<hackathon-header></hackathon-header>-->
-<mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+<mat-toolbar class="toolbar">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
     <img class="logo" alt="Logo" src="../assets/logo.png"/>
     <span>Product name</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon">
         <mat-icon>search</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="example-icon">
         <mat-icon>notifications</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="example-icon">
         <mat-icon>apps</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="example-icon">
         <mat-icon>person</mat-icon>
     </button>
 </mat-toolbar>
-<div class="content" role="main">
 
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>{{demandeTitle}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div id="stackblitz">
-                <p>Stackblitz shows here</p>
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <br>
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Écris ici ta demande *</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-form-field class="example-full-width">
-                <mat-label>Type your content here...</mat-label>
-                <textarea
-                    matInput #message
-                    placeholder="Ex... (un exemple fourni)"
-                    [(ngModel)]="content"
-                ></textarea>
-                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-            </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-button (click)="startStackblitz()">Envoyer</button>
-        </mat-card-actions>
-    </mat-card>
+<mat-drawer-container class="drawerContainer" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" class="createButton"><mat-icon>add</mat-icon> Create </button>
+        </div>
+        <div>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="project row">
+                            <p class="col-5">Project 1</p>
+                            <button mat-icon-button class="col-2"><mat-icon>add</mat-icon></button>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>{{demandeTitle}}</p>
+                    <mat-divider></mat-divider>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </mat-drawer>
 
-</div>
+    <div class="example-sidenav-content" role="main">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{demandeTitle}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div id="stackblitz">
+                        <p>Stackblitz shows here</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <br>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Écris ici ta demande *</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Type your content here...</mat-label>
+                        <textarea
+                            matInput #message
+                            placeholder="Ex... (un exemple fourni)"
+                            [(ngModel)]="content"
+                        ></textarea>
+                        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="startStackblitz()">Envoyer</button>
+                </mat-card-actions>
+            </mat-card>
+
+    </div>
+
+</mat-drawer-container>
+

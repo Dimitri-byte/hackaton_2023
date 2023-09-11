@@ -12,6 +12,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {GenerateTextService} from "./generate-text.service";
 import {FormsModule} from "@angular/forms";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import {FormsModule} from "@angular/forms";
         MatToolbarModule,
         MatIconModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        MatSidenavModule,
+        MatExpansionModule
     ],
     providers: [GenerateTextService],
     bootstrap: [AppComponent]
