@@ -24,12 +24,12 @@ export class GenerateTextService {
                 map(str => {
                     let generatedText = str.generated_text.toString();
                     debugger;
-                    let htmlStartIndex = generatedText.indexOf('<html>');
+                    let htmlStartIndex = generatedText.indexOf('<!DOCTYPE html>');
                     let htmlEndIndex = generatedText.indexOf('</html>') + 7; // inclure '</html>'
                     let cssStartIndex = generatedText.indexOf('cssCode') + 11;
                     let cssEndIndex = generatedText.indexOf('\"title\"') - 3;
                     let titleStartIndex = generatedText.indexOf('\"title\"') + 10;
-                    let titleEndIndex = generatedText.indexOf('\"}]\"');
+                    let titleEndIndex = generatedText.indexOf('\"}]');
                     return {
                         generated_text: {
                             title: generatedText.slice(titleStartIndex, titleEndIndex),
