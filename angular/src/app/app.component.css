@@ -75,3 +75,38 @@
     width: 60px;
     height: 32px;
 }
+
+.example-sidenav-content {
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.example-sidenav {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-right: 50px;
+    margin-right: 20px;
+}
+
+.drawerContainer {
+    background-color: #F3F5FE;
+}
+
+.toolbar {
+    background-color: #FFFFFF;
+}
+
+.example-button-row button {
+    margin-bottom: 10px;
+}
+
+.createButton {
+    border-radius: 28px;
+}
+
+.project {
+    justify-content: center;
+}
