@@ -10,7 +10,7 @@ with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
 contextPrompt = "As a professional front end developer, create an HTML and CSS skeleton with responsive design using Bootstrap for the following scenario."
 resumeTitlePrompt = "Also, please create a summary of the following scenario to be returned as the title"
 formattingPrompt = "Return the answer as a RFC8259 compliant JSON object with the following format."
-jsonFormatString = "{\"htmlCode\": \"html code\", \"cssCode\": \"css code\", , \"title\": \"summary of the scenario\"}"
+jsonFormatString = "{\"htmlCode\": \"html code\", \"cssCode\": \"css code\", \"title\": \"summary of the scenario\"}"
 
 def generate_text(prompt):
     api_key = open_api_key
