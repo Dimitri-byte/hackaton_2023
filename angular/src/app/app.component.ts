@@ -63,12 +63,14 @@ export class AppComponent implements OnInit {
 
     public startStackblitz() {
         this.generateTextService.generate(this.content).subscribe(result => {
-            this.demandeTitle = result?.title;
+            this.demandeTitle = result.title ? result.title : '';
+            let css = result.cssCode ? result.cssCode : '';
+            let html = result.htmlCode ? result.htmlCode.replace('<head>', this.cssPrefix + css + this.cssSuffix) : '';
             this.project = {
                 ...this.project, ...{
                     files: {
-                        'index.html': result?.htmlCode.replace('<head>', this.cssPrefix + result?.cssCode + this.cssSuffix),
-                        'style.css': result?.cssCode,
+                        'index.html': html,
+                        'style.css': css,
                     },
                 }
             }
