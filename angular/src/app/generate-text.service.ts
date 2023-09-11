@@ -19,14 +19,16 @@ export class GenerateTextService {
 
         // return this.http.post<ResponseText>(this.url, body, { headers }); // Envoyez le corps de requête correctement formaté
 
-        return this.http.post<string>(this.url, body, {headers})
+        return this.http.post<any>(this.url, body, {headers})
             .pipe(
                 map(str => {
-                    let startIndex = str.indexOf('<html>');
-                    let endIndex = str.indexOf('</html>') + 7; // inclure '</html>'
+                    let generatedText = str.generated_text.toString();
+                    debugger;
+                    let startIndex = generatedText.indexOf('<html>');
+                    let endIndex = generatedText.indexOf('</html>') + 7; // inclure '</html>'
                     return {
                         generated_text: {
-                            htmlCode: str.slice(startIndex, endIndex)
+                            htmlCode: generatedText.slice(startIndex, endIndex)
                         }
                     }
                 }));
