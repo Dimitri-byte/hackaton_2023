@@ -23,7 +23,6 @@ export class GenerateTextService {
             .pipe(
                 map(str => {
                     let generatedText = str.generated_text.toString();
-                    debugger;
                     let htmlStartIndex = generatedText.indexOf('<!DOCTYPE html>');
                     let htmlEndIndex = generatedText.indexOf('</html>') + 7; // inclure '</html>'
                     let cssStartIndex = generatedText.indexOf('cssCode') + 11;
