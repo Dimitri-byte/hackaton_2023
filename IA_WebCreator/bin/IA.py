@@ -63,7 +63,7 @@ def generate_text_api():
     #generated_text_str.decode("utf-8")
     # json_object = json.loads(generated_text_str.decode("utf-8"))
     response = {
-        'generated_text': generated_text
+        'generatedResponseText': generated_text
     }
 
     return jsonify(response)
