@@ -24,11 +24,17 @@ export class GenerateTextService {
                 map(str => {
                     let generatedText = str.generated_text.toString();
                     debugger;
-                    let startIndex = generatedText.indexOf('<html>');
-                    let endIndex = generatedText.indexOf('</html>') + 7; // inclure '</html>'
+                    let htmlStartIndex = generatedText.indexOf('<html>');
+                    let htmlEndIndex = generatedText.indexOf('</html>') + 7; // inclure '</html>'
+                    let cssStartIndex = generatedText.indexOf('cssCode') + 11;
+                    let cssEndIndex = generatedText.indexOf('\"title\"') - 3;
+                    let titleStartIndex = generatedText.indexOf('\"title\"') + 10;
+                    let titleEndIndex = generatedText.indexOf('\"}]\"');
                     return {
                         generated_text: {
-                            htmlCode: generatedText.slice(startIndex, endIndex)
+                            title: generatedText.slice(titleStartIndex, titleEndIndex),
+                            htmlCode: generatedText.slice(htmlStartIndex, htmlEndIndex),
+                            cssCode: generatedText.slice(cssStartIndex, cssEndIndex)
                         }
                     }
                 }));
