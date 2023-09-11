@@ -17,16 +17,18 @@ export class GenerateTextService {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         const body = {prompt: message}; // Créez un objet avec la propriété "prompt" contenant le message
 
-        return this.http.post<ResponseText>(this.url, body, { headers }); // Envoyez le corps de requête correctement formaté
+        // return this.http.post<ResponseText>(this.url, body, { headers }); // Envoyez le corps de requête correctement formaté
 
-        // return this.http.post<string>(this.url, body, {headers})
-        //     .pipe(
-        //         map(str => {
-        //             let startIndex = str.indexOf('<html>');
-        //             let endIndex = str.indexOf('</html>') + 7; // inclure '</html>'
-        //             return {
-        //                 htmlCode: str.slice(startIndex, endIndex)
-        //             }
-        //         }));
+        return this.http.post<string>(this.url, body, {headers})
+            .pipe(
+                map(str => {
+                    let startIndex = str.indexOf('<html>');
+                    let endIndex = str.indexOf('</html>') + 7; // inclure '</html>'
+                    return {
+                        generated_text: {
+                            htmlCode: str.slice(startIndex, endIndex)
+                        }
+                    }
+                }));
     }
 }
