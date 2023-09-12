@@ -17,6 +17,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private cssPrefix = '<head>\n\n<style>\n';
     private cssSuffix = '\n</style>\n\n';
 
+    public showProgress = false;
+
     // ------------------------- HTML ----------------------------------------
 
     private cssFile = 'p\x20{\n\tcolor: #0000FF;\n\tbackground-color: #FFFF00;\n}'
@@ -65,6 +67,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // ---------------------- Méthodes publiques ------------------------------
 
     public startStackblitz() {
+        this.showProgress = true;
         this.generateTextService.generate(this.content).subscribe(result => {
             this.demandeTitle = result.generated_text.title ? result.generated_text.title : '';
             let css = result.generated_text.cssCode ? result.generated_text.cssCode : '';
@@ -82,6 +85,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                 openFile: 'style.css,index.html',
                 terminalHeight: 10,
             });
+            this.showProgress = false;
         });
     }
 
