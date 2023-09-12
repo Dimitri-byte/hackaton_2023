@@ -49,10 +49,10 @@
             <mat-card>
                 <mat-card-content>
                     <mat-form-field class="example-full-width">
-                        <mat-label>Type your content here...</mat-label>
+                        <mat-label>Please type your content here...</mat-label>
                         <textarea
                             matInput #message
-                            placeholder="Please enter your request here. (For example: Can you create a web page with (name of components: buttons, drop-down list) with (specifications: colors, size))"
+                            placeholder="For example: Can you create a web page with (name of components: buttons, drop-down list) with (specifications: colors, size)"
                             [(ngModel)]="content"
                         ></textarea>
                         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>

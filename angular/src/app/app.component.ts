@@ -14,8 +14,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     public demandeTitle: string = 'New project';
 
     public content: string = '';
-    private cssPrefix = '<head>\n\n<style>\n';
-    private cssSuffix = '\n</style>\n\n';
+    private cssPrefix = '<head>\n\n\t<style>\n';
+    private cssSuffix = '\n\t</style>\n\n';
 
     public showProgress = false;
 
@@ -30,9 +30,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // ------------------------- Défauts membres  ----------------------------------------
 
-    private defautltCss = 'p\x20{\n\tcolor: #0000FF;\n\tbackground-color: #FFFF00;\n}'
-    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<p>Init test\n\t</p>\n</body>';
-    private defaultTitle = 'New Projet';
+    private defautltCss = '\t\th1\x20{\n\t\t\ttext-align: center;\n\t\t\tbackground-color: #F3F5FE;\n\t\t}\n\t\tp\x20{\n\t\t\ttext-align: center;\n\t\t}'
+    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<h1>GalaxIA</h1>\n\t<p>Let GalaxIA help you create your page.</p>\n</body>';
+    private defaultTitle = 'New Project';
     private defaultMessage = '';
 
     // -------------------------- Projet Stackblitz ----------------------------------

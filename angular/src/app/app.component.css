@@ -111,7 +111,6 @@
     justify-content: center;
 }
 
-
 :host {
     display: flex;
     flex-direction: column;
