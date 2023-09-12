@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // ------------------------- Défauts membres  ----------------------------------------
 
     private defautltCss = '\t\th1\x20{\n\t\t\ttext-align: center;\n\t\t\tbackground-color: #F3F5FE;\n\t\t}\n\t\tp\x20{\n\t\t\ttext-align: center;\n\t\t}'
-    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<h1>GalaxIA</h1>\n\t<p>Let GalaxIA help you create your page.</p>\n</body>';
+    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<h1>GalaxIA</h1>\n\t<p>AI-powered UI/UX design: The future of user experience, personalized for every user</p>\n</body>';
     private defaultTitle = 'New Project';
     private defaultMessage = '';
 
