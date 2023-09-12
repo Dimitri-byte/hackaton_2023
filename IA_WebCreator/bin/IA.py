@@ -23,7 +23,7 @@ def generate_text(prompt):
         "messages": [
             {"role": "system", "content": contextPrompt + resumeTitlePrompt},
             {"role": "user", "content": prompt},
-            {"role": "user", "content": formattingPrompt + jsonFormatString + cleaningUpJsonPrompt}
+            {"role": "user", "content": formattingPrompt + jsonFormatString}
         ],
         "max_tokens": 1000,
         "n": 1,
@@ -54,9 +54,9 @@ CORS(app)
 def generate_text_api():
     prompt = request.json.get('prompt')
     generated_text = generate_text(prompt)
-    generated_text = generated_text.replace('\n', '')
-    generated_text = generated_text.replace('\t', '')
-    generated_text = generated_text.replace('\\', '')
+    generated_text = generated_text.replace('\\n', '\n')
+    generated_text = generated_text.replace('\\t', '\t')
+    generated_text = generated_text.replace('\\\"', '')
     print(f"generated_text: {generated_text}")  
 
     response = {
