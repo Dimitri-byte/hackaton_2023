@@ -56,7 +56,7 @@ def generate_text_api():
     generated_text = generate_text(prompt)
     generated_text = generated_text.replace('\\n', '\n')
     generated_text = generated_text.replace('\\t', '\t')
-    generated_text = generated_text.replace('\\\"', '')
+    generated_text = generated_text.replace('\\\"', '\"')
     print(f"generated_text: {generated_text}")  
 
     response = {
