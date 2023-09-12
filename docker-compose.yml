@@ -9,6 +9,8 @@ services:
       - ./IA_WebCreator:/srv/IA_WebCreator
     networks:
       - my-network
+    environment:
+      - PYTHONUNBUFFERED=1
 
   angular:
     build:
