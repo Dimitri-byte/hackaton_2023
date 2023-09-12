@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
         FormsModule,
         MatSidenavModule,
         MatExpansionModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatTabsModule
     ],
     providers: [GenerateTextService],
     bootstrap: [AppComponent]
