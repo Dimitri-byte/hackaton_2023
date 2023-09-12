@@ -71,7 +71,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.generateTextService.generate(this.content).subscribe(result => {
             this.demandeTitle = result.generated_text.title ? result.generated_text.title : '';
             let css = result.generated_text.cssCode ? result.generated_text.cssCode : '';
-            let html = result.generated_text.htmlCode ? result.generated_text.htmlCode.replace('<head>', this.cssPrefix + css + this.cssSuffix) : '';
+            let html = result.generated_text.htmlCode ? result.generated_text.htmlCode : '';
+            //let html = result.generated_text.htmlCode ? result.generated_text.htmlCode.replace('<head>', this.cssPrefix + css + this.cssSuffix) : '';
             this.project = {
                 ...this.project, ...{
                     files: {
