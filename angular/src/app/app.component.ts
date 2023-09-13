@@ -30,8 +30,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // ------------------------- Défauts membres  ----------------------------------------
 
-    private defautltCss = '\t\th1\x20{\n\t\t\ttext-align: center;\n\t\t\tbackground-color: #F3F5FE;\n\t\t}\n\t\tp\x20{\n\t\t\ttext-align: center;\n\t\t}'
-    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<h1>GalaxIA</h1>\n\t<p>AI-powered UI/UX design: The future of user experience, personalized for every user</p>\n</body>';
+    private defautltCss = '\t\th1\x20{\n\t\t\ttext-align: center;\n\t\t\tbackground-color: #0046fe;\n\t\t\tcolor:white;\n\t\t}\n\t\tp\x20{\n\t\t\ttext-align: center;\n\t\t.logo\{\nbackground-color:#0046fe;\ncolor: white;\nfont-size: 40px;\ntext-align: center;}}'
+    private defaultHtml = '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Responsive Design\n\t\t</title>\n\t</head>\n</html>\n<body>\n\t<h1>GalaxIA</h1>\n\t<p>AI-powered UI/UX design: The future of user experience, personalized for every user.</p>\n</body>';
     private defaultTitle = 'New Project';
     private defaultMessage = '';
 
