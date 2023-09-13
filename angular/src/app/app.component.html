@@ -4,7 +4,7 @@
         <mat-icon>menu</mat-icon>
     </button>
     <img class="logo" alt="Logo" src="../assets/logo.png"/>
-    <span>GalaxIA</span>
+    <span class="galaxia">GalaxIA</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon">
         <mat-icon>search</mat-icon>
@@ -23,7 +23,7 @@
 <mat-drawer-container class="drawerContainer" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="example-button-row">
-            <button mat-raised-button color="primary" class="createButton" (click)="addTab()"><mat-icon>add</mat-icon> Create </button>
+            <button mat-raised-button class="createButton" (click)="addTab()"><mat-icon>add</mat-icon> Create </button>
         </div>
         <div>
             <mat-tab-group [(selectedIndex)]="selectedTab" (click)="updateStackBlitz()">

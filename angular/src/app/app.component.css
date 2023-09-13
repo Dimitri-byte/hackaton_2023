@@ -105,6 +105,8 @@
 
 .createButton {
     border-radius: 28px;
+    color: #FFFFFF;
+    background-color: #0046FE;
 }
 
 .project {
@@ -155,3 +157,8 @@ mat-tab-body {
     background-color: transparent;
     /* background-color: lightgray; */
 }
+
+.galaxia {
+    color: #002C52A3;
+}
+
