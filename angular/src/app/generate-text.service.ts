@@ -31,7 +31,7 @@ export class GenerateTextService {
                     let titleEndIndex = generatedText.indexOf('\"}]');
                     return {
                         generated_text: {
-                            title: generatedText.slice(titleStartIndex, titleEndIndex),
+                            title: generatedText.slice(titleStartIndex, titleEndIndex).replace('\"', '').replace('}',''),
                             htmlCode: generatedText.slice(htmlStartIndex, htmlEndIndex)
                             //cssCode: generatedText.slice(cssStartIndex, cssEndIndex)
                         }
