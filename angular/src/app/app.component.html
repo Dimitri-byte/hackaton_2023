@@ -27,7 +27,14 @@
         </div>
         <div>
             <mat-tab-group [(selectedIndex)]="selectedTab" (click)="updateStackBlitz()">
-                <mat-tab *ngFor="let tab of tabs; let index = index" [label]="getTitle(index)"></mat-tab>
+                <mat-tab *ngFor="let tab of tabs; let index = index">
+                    <ng-template mat-tab-label>
+                        {{getTitle(index)}}
+                        <button mat-icon-button class="example-icon" (click)="removeTab(index)" [disabled]="tabs.length === 1">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </ng-template>
+                </mat-tab>
             </mat-tab-group>
         </div>
     </mat-drawer>

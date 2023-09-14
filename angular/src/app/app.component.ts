@@ -27,6 +27,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     public tabs = [1];
     public selectedTab = 0;
+    public titleToCreate = 2;
 
     // ------------------------- Défauts membres  ----------------------------------------
 
@@ -73,8 +74,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     // ----------------------- OnInit ------------------------------------------
 
     ngOnInit() {
-        this.htmlMap.set(this.selectedTab,  this.defaultHtml);
-        this.titleMap.set(this.selectedTab, this.defaultTitle);
+        this.htmlMap.set(1,  this.defaultHtml);
+        this.titleMap.set(1, this.defaultTitle);
     }
 
     // ---------------------- Méthodes publiques ------------------------------
@@ -94,7 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                     },
                 }
             }
-            this.updateMaps(html, this.demandeTitle, this.content);
+            this.updateMaps(this.tabs[this.selectedTab], html, this.demandeTitle, this.content);
             StackBlitzSDK.embedProject('stackblitz', this.project, {
                 height: 400,
                 openFile: 'style.css,index.html',
@@ -105,27 +106,37 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     public addTab() {
-        this.tabs.push(this.tabs.length + 1);
+        this.tabs.push(this.titleToCreate);
         this.selectedTab = this.tabs.length - 1;
-        this.updateMaps(this.defaultHtml, this.defaultTitle, this.defaultMessage);
+        this.updateMaps(this.titleToCreate, this.defaultHtml, this.defaultTitle, this.defaultMessage);
+        this.updateStackBlitz();
+        this.titleToCreate++;
         this.updateStackBlitz();
     }
 
+    public removeTab(index: number) {
+        this.selectedTab = index - 1;
+        this.titleMap.delete(this.tabs[index]);
+        this.htmlMap.delete(this.tabs[index]);
+        this.messageMap.delete(this.tabs[index]);
+        this.tabs.splice(index, 1);
+    }
+
     public getTitle(index: number) {
-        let tabTitle = this.titleMap.get(index);
+        let tabTitle = this.titleMap.get(this.tabs[index]);
         return !!tabTitle ? tabTitle : this.demandeTitle;
     }
 
-    private updateMaps(html: string, title: string, message: string) {
-        this.messageMap.set(this.selectedTab, message);
-        this.htmlMap.set(this.selectedTab, html);
-        this.titleMap.set(this.selectedTab, title);
+    private updateMaps(key: number, html: string, title: string, message: string) {
+        this.messageMap.set(key, message);
+        this.htmlMap.set(key, html);
+        this.titleMap.set(key, title);
     }
 
     public updateStackBlitz() {
-        let html = this.htmlMap.get(this.selectedTab);
-        let title = this.titleMap.get(this.selectedTab);
-        let message = this.messageMap.get(this.selectedTab);
+        let html = this.htmlMap.get(this.tabs[this.selectedTab]);
+        let title = this.titleMap.get(this.tabs[this.selectedTab]);
+        let message = this.messageMap.get(this.tabs[this.selectedTab]);
         html = !!html ? html : '';
         title = !!title ? title : '';
         message = !!message ? message : '';
@@ -138,7 +149,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                 },
             }
         }
-        this.updateMaps(html, title, message);
+        this.updateMaps(this.tabs[this.selectedTab], html, title, message);
         StackBlitzSDK.embedProject('stackblitz', this.project, {
             height: 400,
             openFile: 'style.css,index.html',
