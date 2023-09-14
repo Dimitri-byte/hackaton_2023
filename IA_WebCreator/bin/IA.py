@@ -7,7 +7,7 @@ from flask_cors import CORS
 
 with open("/srv/IA_WebCreator/bin/api_key.txt", "r") as file:
     open_api_key = file.read().strip()
-contextPrompt = 'As a professional front end developer, create an HTML and CSS using link rel skeleton with responsive design using Bootstrap for the following scenario.'
+contextPrompt = 'As a professional front end developer, create an HTML and CSS using link rel skeleton with responsive design using Bootstrap and fontawesome for the following scenario.'
 resumeTitlePrompt = 'Also, please create a summary of the following scenario to be returned as the title'
 formattingPrompt = 'Return the answer as a JSON object with the following format: '
 jsonFormatString = '[{"htmlCode": "html code", "title": "summary of the scenario"}]'
