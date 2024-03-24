@@ -24,10 +24,15 @@ Se mettre dans le même répertoire que le fichier "docker-compose.yml".
 
 Lancer les commandes suivante dans l'ordre:
 docker-compose down 
+
 docker rmi --force httpd:2.4 
+
 docker rmi --force hackaton_2023-debian-container 
+
 docker rmi --force hackaton_2023-angular
+
 docker volume prune 
+
 docker builder prune
 
 ## tester la connexion web
